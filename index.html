@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenerateUser</title>
+      <!--TAILWINDCSS-->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <!--SWEETALER2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+  
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+        --color-has: #4F39F6;
+      }
+      :root{
+        --color-has:  #4F39F6;
+      }
+       /* Cambiar el color de la barra de progreso */
+    .swal2-timer-progress-bar-container {
+        background-color: #5a5a5a7e
+    
+    }
+    .swal2-timer-progress-bar{
+        background-color: white;
+        height: 5px;
+        background: white;
+        border-radius: 3px;
+    }
+    </style>
+      <!--GOOGLE-FONTS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+
+</head>
+
+<body>
+  <div class="py-6 bg-[var(--color-has)]">
+    <h3 class="w-9/10 md:w-8/10 mx-auto text-white text-xl font-medium">Evaluar contraseña *</h3>
+  </div>
+  <div class="w-9/10 md:w-8/10 mx-auto mb-6">
+
+    <form class="flex flex-col gap-6 my-8" id="formPassword">
+      <div>
+        <label for="password" class="text-sm/6 font-medium text-gray-900">Contraseña *</label>
+        <div class="mt-2" id="box-input">
+          <input type="text" name="password" id="password"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="contraseña"
+          />
+          <span class="hidden text-red-600 mt-2">Porfavor ingrese una contraseña</span>
+        </div>
+      </div>
+      <div>
+        <label for="character" class="block text-sm/6 font-medium text-gray-900">Total de caracteres *</label>
+        <div class="mt-2" id="box-input">
+          <input type="number" name="character" id="character"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            " 
+            placeholder="1"
+            />
+          <span class="hidden text-red-600 mt-2">Ingrese un número</span>
+        </div>
+      </div>
+      <div>
+        <label for="number" class="block text-sm/6 font-medium text-gray-900">Cantidad de números *</label>
+        <div class="mt-2" id="box-input">
+          <input type="number" name="number" id="number"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="1"
+          />
+          <span class="hidden text-red-600 mt-2">Ingrese un número</span>
+        </div>
+      </div>
+      <div>
+        <label for="letter" class="block text-sm/6 font-medium text-gray-900">Cantidad de letras *</label>
+        <div class="mt-2" id="box-input">
+          <input type="number" name="letter" id="letter"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="1"
+          />
+          <span class="hidden text-red-600 mt-2">Ingrese un número</span>
+        </div>
+      </div>
+      <div>
+        <label for="specialCharacter" class="block text-sm/6 font-medium text-gray-900">Caracter especial *</label>
+        <div class="mt-2" id="box-input">
+          <input type="text" name="specialCharacter" id="specialCharacter"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 d  ata-[error=true]:text-red-600
+            "
+            placeholder="*"
+          />
+          <span class="hidden text-red-600 mt-2">Ingrese un caracter especial</span>
+        </div>
+      </div>
+      <div id="containerError"> 
+      </div>
+      <button type="submit" class="rounded-lg bg-[var(--color-has)] text-white h-10 cursor-pointer">Evaluar contraseña  </button>
+      <span id="validate"></span>
+    </form>
+    <h3 class="text-[var(--color-has)] text-xl font-medium">Agregar usuario</h3>
+    <form class="flex flex-col gap-6 my-8" id="formUser">
+      <div>
+        <label for="name" class="text-sm/6 font-medium text-gray-900">Name *</label>
+        <div class="mt-2" id="box-input">
+          <input type="text" name="name" id="name"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="nombre"
+          />
+          <span class="hidden text-red-600 mt-2">Porfavor ingrese su primer nombre</span>
+        </div>
+      </div>
+      <div>
+        <label for="lastName" class="text-sm/6 font-medium text-gray-900">Apellido *</label>
+        <div class="mt-2" id="box-input">
+          <input type="text" name="lastName" id="lastName"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="apellido"
+          />
+          <span class="hidden text-red-600 mt-2">Porfavor ingrese su primer apellido</span>
+        </div>
+      </div>
+      <div>
+        <label for="connector" class="text-sm/6 font-medium text-gray-900">Conector *</label>
+        <div class="mt-2" id="box-input">
+          <input type="text" name="connector" id="connector"
+            class="rounded-md w-full outline-1 -outline-offset-1 outline-gray-300 px-3 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm/6 focus:outline-2
+            focus:-outline-offset-2 focus:outline-[var(--color-has)] data-[error=true]:outline-2 data-[error=true]:outline-red-600 data-[error=true]:text-red-600
+            "
+            placeholder="+"
+          />
+          <span class="hidden text-red-600 mt-2">Porfavor ingrese un conector válido</span>
+        </div>
+      </div>
+      <button type="submit" class="rounded-lg bg-[var(--color-has)] text-white h-10 cursor-pointer">Agregar usuario</button>
+    </form>
+    <div>
+      <ul role="list" class="divide-y divide-gray-200" id="list">
+      </ul>
+    </div>
+  </div>
+  <script src="./app.js" type="module"></script>
+</body>
+
+</html>
